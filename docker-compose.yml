@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Expose your Go app's port if needed
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379" # Expose Redis port
