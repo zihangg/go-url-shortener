@@ -9,4 +9,5 @@ var (
 	ErrRedisSetError = errors.New("redis set failed")
 	ErrRedisEmptyResult = errors.New("key not found in redis")
 	ErrRedisGetError = errors.New("redis get failed")
+	ErrInvalidUrlParsed = errors.New("url parsing failed")
 )

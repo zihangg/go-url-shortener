@@ -1,6 +1,8 @@
 package helpers
 
 import (
+	"net/url"
+	"os"
 	"strings"
 )
 
@@ -17,4 +19,22 @@ func GenerateEncodedURL(number uint64) string {
 	}
 
 	return encodedBuilder.String()
+}
+
+
+func NonInternalDomain(urlString string) bool {
+	if urlString == os.Getenv("DOMAIN") {
+		return false 
+	}
+
+	u, err := url.Parse(urlString)
+	if err != nil {
+		return false
+	}
+
+	if u.Host == os.Getenv("DOMAIN") {
+		return false
+	}
+
+	return true
 }
