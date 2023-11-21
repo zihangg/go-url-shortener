@@ -18,8 +18,8 @@ curl --location 'localhost:8080/api/v1/shorten' \
 
 `docker compose up --build`
 
-
 ### Technologies used
+
 1. Gin Gonic
 2. Redis
 3. Docker
