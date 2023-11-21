@@ -37,8 +37,6 @@ func Shorten(c *gin.Context) {
 	}
 
 	// Ensure that URL is not from same domain (i.e. trying to shorten the url again)
-	// TODO: code chunk here
-
 	if !helpers.NonInternalDomain(body.URL) {
 		err := e.ErrInvalidUrl
 		c.Error(err)
