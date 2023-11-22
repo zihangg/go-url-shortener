@@ -15,13 +15,13 @@ import (
 )
 
 type request struct {
-	URL 					string `json:"url"`
-	CustomShort 	string `json:"short"`
+	URL         string `json:"url"`
+	CustomShort string `json:"short"`
 }
 
 type response struct {
-	URL 					string `json:"url"`
-	Expiry 				time.Time `json:"expiry"`	
+	URL    string    `json:"url"`
+	Expiry time.Time `json:"expiry"`
 }
 
 func Shorten(c *gin.Context) {
@@ -45,7 +45,7 @@ func Shorten(c *gin.Context) {
 
 	id := body.CustomShort
 	if id == "" {
-			id = helpers.GenerateEncodedURL(rand.Uint64())
+		id = helpers.GenerateEncodedURL(rand.Uint64())
 	}
 
 	// Check if ID already exists, and if it does, reject (i.e. custom short url)
@@ -61,7 +61,7 @@ func Shorten(c *gin.Context) {
 	}
 
 	// If short url can be used, add to redis with 5 minutes TTL
-	expiry := 5*60*time.Second
+	expiry := 5 * 60 * time.Second
 	err = client.Set(ctx, id, body.URL, expiry).Err()
 	if err != nil {
 		c.Error(e.ErrRedisSetError)
@@ -71,7 +71,7 @@ func Shorten(c *gin.Context) {
 	localTime := time.Now()
 
 	resp := &response{
-		URL: os.Getenv("DOMAIN") + "/" + id,
+		URL:    os.Getenv("DOMAIN") + "/" + id,
 		Expiry: localTime.Add(expiry),
 	}
 

@@ -14,3 +14,4 @@ func HealthCheck(c *gin.Context) {
 		},
 	)
 }
+

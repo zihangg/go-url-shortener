@@ -10,8 +10,6 @@ import (
 	e "github.com/zihangg/go-url-shortener/errors"
 )
 
-
-
 func Redirect(c *gin.Context) {
 	url := c.Param("url")
 
@@ -29,3 +27,4 @@ func Redirect(c *gin.Context) {
 
 	c.Redirect(http.StatusMovedPermanently, val)
 }
+
